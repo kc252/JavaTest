@@ -46,5 +46,9 @@ public class Tune implements Player{
 
 	}
 
+	public void Play(){
+		System.out.println(getNotation());
+	}
+
 
 }

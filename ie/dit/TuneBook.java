@@ -9,23 +9,30 @@ public class TuneBook{
 
 	ArrayList<Tune> tunes = new ArrayList<Tune>();
 
-	public TuneBook(String abc) {
+	public TuneBook(String abc){
 
 		BufferedReader inputStream = null; 
 
 		try{
-			inputStream = newBufferedReader(new FileReader("ABC.txt"));
+			inputStream = new BufferedReader(new FileReader(abc));
 
-			Tune t = new Tune();
+			String l;
 
-			while((t = inputStream.readLine())) != null){
+			int x;
+			String title, altTitle, notation;
 
-				t.x = getX();
-				t.title = getTitle();
+    		while ((l = inputStream.readLine()) != null) 
+    		{
+    			if(l.contains("T:")){
+    				title = l;
+    			}
+    			if (l.contains("X:")){
+    				x = l.toString();
+    			}
 
-				t.AltTitle
+    			Tune t = new Tune(x,title,altTitle,notation);
 
-				tunes.add(t);
+    			tunes.add(t);
 			}
 
 		}
@@ -47,6 +54,35 @@ public class TuneBook{
 	public String toString(){
 
 		StringBuffer sb = new StringBuffer();
-		for(String tune:tunes)
+		for(String tune:tunes){
+			sb.append (tune + "\n");
+		}
+
+		return sb.toString();
 	}
+
+	public Tune findTune(String title){
+
+		Tune search = new Tune();
+
+		for(tune:tunes){
+			tune = search; 
+
+			if(search.title == title){
+				return search
+			}
+		}
+
+		return null;
+
+	}
+
+	 public static void main(String[] args)
+    {
+        TuneBook tb = new TuneBook("ABC.abc");
+        System.out.println(tb);
+
+        Tune t = tb.findTune("Scotsman over the Border");
+        t.play();
+    }
 }

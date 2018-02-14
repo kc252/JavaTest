@@ -1,5 +1,7 @@
-public interface Player {
+package ie.dit;	
+
+public interface Player{
 
 	void play();
-	
+
 }
